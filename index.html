@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>AngularJS Project</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="photo.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+	<script src="app.js"></script>
+	<script src="main.ctrl.js"></script>	
+</head>
+
+<body ng-app="app" ng-controller="MainController as main"> 	
+	<div class="container">
+		<h1 id="heading">{{main.title}}</h1>
+		<!--Search bar-->
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-search"></span>
+			</span>
+			<input type="text" class="form-control" ng-model="main.searchInput">
+		</div>
+		<!--Orders dropdown, to choose how you want the photos ordered-->
+		<div id="drop"><select class="form-control pull-right drop" ng-model="main.order" ng-options="order as order.title for order in main.orders"></select></div>
+	
+	<!--Loop through the photo items and show in a table-->
+	<h3>List of photos</h3>
+	<table class="list-group" style="width:100%">
+		<tr class="list-group-item" ng-repeat="photo in main.photos | filter:main.searchInput | orderBy:main.order.key:main.order.reverse">
+			<td class="col1"><img id={{photo.link}} class="images" src={{photo.link}} alt="no image" ng-mouseenter="main.change(photo)"></td>
+			<td class="col2"><span class="titles">{{photo.title}}</span></td>
+			<td class="col3"><span class="glyphicon glyphicon-star" ng-if="photo.favourite"></span></td>
+			<td class="col4"><span class="badge">{{photo.year}}</span></td>
+		</tr>
+	</table>
+	
+	<!--Add new photo section-->
+	<div id="newPhoto" class="well">
+    <h3>Add a new photo</h3>
+    <form name="main.addForm" class="form" ng-submit="main.addPhoto()">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="main.new.title" required />
+        </div>
+		<div class="form-group">
+            <label>Link </label>
+			<placeholder>Please copy your jpeg to the 'images' folder, then type "images/exampleName.jpg" (replacing 'exampleName' with the name of your jpeg)</placeholder>
+            <input type="text" class="form-control" ng-model="main.new.link" required />
+        </div>
+        <div class="form-group">
+            <label>Year</label>
+            <input type="number" min="1900" max="2030" class="form-control" ng-model="main.new.year" required />
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <label>Favourite: <input type="checkbox" ng-model="main.new.favourite" /></label>
+            </div>
+        <div class="col-xs-6">
+              <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+        </div>
+        </div>
+    </form>
+	</div>
+	</div>
+		
+</body>
+</html>

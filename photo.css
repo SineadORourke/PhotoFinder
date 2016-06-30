@@ -1,0 +1,56 @@
+body{								/*styling for body*/
+	background-color: #BCDAD9;
+}
+
+#heading{							/*styling for main heading*/
+	text-align: center;
+	font-size: 500%;
+	color: white;
+	padding-bottom:20px;
+}
+
+.images{							/*size of images*/
+	height:100px;
+	width:120px;
+}
+		
+.titles{							/*styling of image titles*/
+	font-size:150%;
+}
+		
+.col1{								/*table - photo column*/
+	width:25%;
+}
+		
+.col2{								/*table - title column*/
+	width:25%;
+	text-align: center;
+}
+		
+.col3{								/*table - star column*/
+	width:100%;
+	text-align: center;
+}
+		
+.col4{								/*table - year column*/
+	width:100%;
+	float: right:
+}
+
+tr:hover{							/*hovering over the rows*/
+	background-color: #679B99;
+	color: white;
+}
+
+label{
+	padding-right:15px;
+}
+
+#drop{								/*styling for dropdown menu*/
+	padding-bottom:50px;
+}
+		
+#newPhoto{							/*styling for Add photo section*/
+	padding-bottom:50px;
+}
+
